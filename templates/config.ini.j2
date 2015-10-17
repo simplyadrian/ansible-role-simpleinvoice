@@ -5,11 +5,11 @@
 [production]
 database.adapter              = pdo_mysql
 database.utf8                 = true
-database.params.host          = {{ simpleinvoice_aws_dbstring | default('some.db.string.com') }}
+database.params.host          = {{ simpleinvoice_aws_dbhost | default('localhost') }}
 database.params.username      = {{ simple_aws_dbuser | default('root') }}
 database.params.password      = {{ simple_aws_dbpass | default('none') }}
-database.params.dbname        = simple_invoices
-database.params.port            = 3306
+database.params.dbname        = {{ simpleinvoice_db_name }}
+database.params.port            = {{ simpleinvoice_dbport | default('3306') }}
 
 authentication.enabled        = false
 authentication.http         =
