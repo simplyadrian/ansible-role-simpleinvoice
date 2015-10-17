@@ -5,6 +5,3 @@
 - include: install.yml
 
 - include: app_user.yml
-
-- include: aws.yml
-  when: passwordmanagerpro_aws_install

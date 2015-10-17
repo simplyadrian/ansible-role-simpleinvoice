@@ -7,4 +7,6 @@
 - src: git+ssh://git@github.com/geerlingguy/ansible-role-apache.git
   name: apache
   path: ./roles
-- src: git+ssh://
+- src: git+ssh://git@github.com/simplyadrian/ansible-role-simpleinvoice.git
+  name: simpleinvoice
+  path: ./roles

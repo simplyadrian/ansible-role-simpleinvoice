@@ -1,9 +1,21 @@
 ---
 - hosts: test
 
+  vars:
+    credstash_table: "credential-store"
+    credstash_secrets:
+      - table: "{{ credstash_table }}"
+        secret: "{{ environ }}.simple_db.username"
+        fact: "simple_aws_dbuser"
+        context: "env={{ environ }}"
+      - table: "{{ credstash_table }}"
+        secret: "{{ environ }}.simple_db.password"
+        fact: "simple_aws_dbpass"
+        context: "env={{ environ }}"
+
   roles:
     - role: credstash
       secrets: "{{ credstash_secrets }}"
     - role: apache
     - role: php
-    - role: ansible-role-simpleinvoice
+    - role: simpleinvoice
