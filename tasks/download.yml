@@ -1,5 +1,5 @@
 - name: Check for simpleInvoice install file
-  stat: path=/tmp/{{ passwordmanagerpro_artifact }}
+  stat: path=/tmp/{{ simpleinvoice_artifact }}
   register: stinstaller
 
 - name: Download simpleInvoice install file
