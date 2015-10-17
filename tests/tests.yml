@@ -5,11 +5,11 @@
     credstash_table: "credential-store"
     credstash_secrets:
       - table: "{{ credstash_table }}"
-        secret: "{{ environ }}.simple_db.username"
+        secret: "simple_db.username"
         fact: "simple_aws_dbuser"
         context: "env={{ environ }}"
       - table: "{{ credstash_table }}"
-        secret: "{{ environ }}.simple_db.password"
+        secret: "simple_db.password"
         fact: "simple_aws_dbpass"
         context: "env={{ environ }}"
 

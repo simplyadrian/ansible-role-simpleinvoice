@@ -2,4 +2,7 @@
   file: path=/tmp/{{ simpleinvoice_artifact }} mode=0755
 
 - name: Unarchive {{ simpleinvoice_artifact }}
-  unarchive: src=/tmp/{{ simpleinvoice_artifact }} dest={{ simpleinvoice_home }} copy=no
+  unarchive:
+    src: /tmp/{{ simpleinvoice_artifact }}
+    dest: {{ simpleinvoice_home }}
+    copy: no
