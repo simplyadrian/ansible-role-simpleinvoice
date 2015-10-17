@@ -36,14 +36,14 @@
 
     mysql_root_password: "{{ simple_aws_dbpass }}"
     mysql_databases:
-      - name: "{{ simpleinvoice_db_name }}"
+      - name: "{{ simpleinvoice_dbname }}"
         encoding: utf8
         collation: utf8_unicode_ci
     mysql_users:
       - name: "{{ simple_aws_dbuser }}"
         host: "%"
         password: "{{ simple_aws_dbpass }}"
-        priv: "{{ simpleinvoice_db_name }}.*:ALL"
+        priv: "{{ simpleinvoice_dbname }}.*:ALL"
 
   pre_tasks:
     - name: install module prerequisites
