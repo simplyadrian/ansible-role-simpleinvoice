@@ -1,6 +1,6 @@
 - name: Remove default html index
   file: 
-    path: {{ simpleinvoice_home }}/html.index
+    path: "{{ simpleinvoice_home }}/html.index"
     state: absent
 
 - name: Unarchive {{ simpleinvoice_artifact }}
@@ -12,13 +12,13 @@
 
 - name: Change ownership to apache webserver user
   file:
-    path: {{ simpleinvoice_home }}/simpleinvoice
+    path: "{{ simpleinvoice_home }}/simpleinvoice"
     recurse: yes
     owner: www-data
     group: www-data
 
 - name: Change permissions on tmp directory
   file:
-    path: {{ simpleinvoice_home/simpleinvoice/tmp
+    path: "{{ simpleinvoice_home }}/simpleinvoice/tmp"
     recurse: yes
     mode: 777 
