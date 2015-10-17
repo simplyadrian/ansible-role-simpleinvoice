@@ -1,0 +1,23 @@
+FROM ansible/ubuntu14.04-ansible:devel
+MAINTAINER aherrera@spscommerce.com
+ADD ./tests /tmp/playbook
+## IGNORE THE HAND WAVING HUMAN
+ADD . /tmp/playbook/roles/ansible-role-passwordmanagerpro
+WORKDIR /tmp/playbook
+ENV ANSIBLE_FORCE_COLOR=true
+ENV PYTHONUNBUFFERED=1
+
+ENV AWS_ACCESS_KEY_ID={{aws_key_id}}
+ENV AWS_SECRET_ACCESS_KEY={{aws_key}}
+
+RUN apt-get install -y vim
+
+## run tests
+RUN ansible-playbook -vvvv -i "[test] localhost," -c local tests.yml &&\
+    ansible-playbook -i "[test] localhost," -c local tests.yml 2>/dev/null | grep -q 'changed=0.*failed=0' &&\
+    (echo 'Idempotence test: \033[0;32mpass\033[0m' && exit 0) ||\
+    (echo 'Idempotence test: \033[0;31mfail\033[0m' && exit 1) 
+
+EXPOSE 8080
+
+CMD /bin/bash

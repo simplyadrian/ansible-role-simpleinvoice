@@ -1,0 +1,7 @@
+- name: Check for simpleInvoice install file
+  stat: path=/tmp/{{ passwordmanagerpro_artifact }}
+  register: stinstaller
+
+- name: Download simpleInvoice install file
+  get_url: url=https://{{ simpleinvoice_url }}{{ simpleinvoice_artifact }} dest=/tmp/{{ simpleinvoice_artifact }}
+  when: not stinstaller.stat.exists

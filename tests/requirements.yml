@@ -1,0 +1,10 @@
+- src: git+ssh://git@github.com/SPSCommerce/ansible-role-module-credstash.git
+  name: credstash
+  path: ./roles
+- src: git+ssh://git@github.com/geerlingguy/ansible-role-php.git
+  name: php
+  path: ./roles
+- src: git+ssh://git@github.com/geerlingguy/ansible-role-apache.git
+  name: apache
+  path: ./roles
+- src: git+ssh://

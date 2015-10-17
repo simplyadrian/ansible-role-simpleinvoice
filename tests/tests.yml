@@ -1,0 +1,9 @@
+---
+- hosts: test
+
+  roles:
+    - role: credstash
+      secrets: "{{ credstash_secrets }}"
+    - role: apache
+    - role: php
+    - role: ansible-role-simpleinvoice
