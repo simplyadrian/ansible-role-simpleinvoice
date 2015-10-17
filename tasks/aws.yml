@@ -1,22 +1,16 @@
-- name: Updating customer-config.xml to ensure db is not starting
-  replace: regexp='<configuration name="StartDBServer" value="true"\/>$' replace='<configuration name="StartDBServer" value="false"/>'  dest='{{ passwordmanagerpro_home }}/conf/customer-config.xml'
+- name: Create config.ini
+  template:
+    src: config.ini.j2
+    dest: "{{ simpleinvoice_home }}/simpleinvoices/config/config.ini"
+    force: yes
+    owner: www-data
+    group: www-data
 
-- name: Updating persistence-configurations.xml to ensure db is not starting
-  replace: regexp='<configuration name="StartDBServer" value="true"/>$' replace='<configuration name="StartDBServer" value="false"/>' dest='{{ passwordmanagerpro_home }}/conf/Persistence/persistence-configurations.xml'
-
-- name: Updating database_params.conf for AWS RDS
-  replace: regexp='url=jdbc:postgresql:\/\/localhost:2345\/PassTrix\?ssl=true$' replace={{ passwordmanagerpro_aws_dbstring }} dest='{{ passwordmanagerpro_home }}/conf/database_params.conf'
-
-- name: Updating the db username
-  replace: regexp='username=postgres' replace='username={{ passwordmanagerpro_aws_dbuser }}' dest='{{ passwordmanagerpro_home }}/conf/database_params.conf'
-
-- name: Updating the db password
-  replace: regexp='password=postgres' replace='password={{ passwordmanagerpro_aws_dbpass }}' dest='{{ passwordmanagerpro_home }}/conf/database_params.conf'
-
-- name: Create PassTrix database on RDS
-  postgresql_db: name={{ passwordmanagerpro_aws_dbname }}
-                 login_host={{ passwordmanagerpro_aws_dbhost }}
-                 login_user={{ passwordmanagerpro_aws_dbuser }}
-                 login_password={{ passwordmanagerpro_aws_dbpass }}
-                 state=present
+- name: Create simple_invoices database on RDS
+  mysql_db:
+    name: {{ simpleinvoice_aws_dbname }}
+    login_host: {{ simpleinvoice_aws_dbhost }}
+    login_user: {{ simple_aws_dbuser }}
+    login_password: {{ simple_aws_dbpass }}
+    state: present
   
