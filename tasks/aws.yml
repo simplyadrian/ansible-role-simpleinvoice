@@ -8,9 +8,9 @@
 
 - name: Create simple_invoices database on RDS
   mysql_db:
-    name: {{ simpleinvoice_aws_dbname }}
-    login_host: {{ simpleinvoice_aws_dbhost }}
-    login_user: {{ simple_aws_dbuser }}
-    login_password: {{ simple_aws_dbpass }}
+    name: "{{ simpleinvoice_aws_dbname }}"
+    login_host: "{{ simpleinvoice_aws_dbhost }}"
+    login_user: "{{ simple_aws_dbuser }}"
+    login_password: "{{ simple_aws_dbpass }}"
     state: present
   

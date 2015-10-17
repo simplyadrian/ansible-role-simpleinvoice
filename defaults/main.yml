@@ -4,4 +4,5 @@ simpleinvoice_url: bitbucket.org/simpleinvoices/simpleinvoices/downloads/
 simpleinvoice_artifact: simpleinvoices.2011.1.zip 
 simpleinvoice_dbname: simple_invoices
 simpleinvoice_home: /var/www/html
+simpleinvoice_aws_dbhost: localhost
 simpleinvoice_local_install: true
