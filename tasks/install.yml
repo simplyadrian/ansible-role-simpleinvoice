@@ -13,6 +13,7 @@
 - name: Change ownership to apache webserver user
   file:
     path: "{{ simpleinvoice_home }}/simpleinvoice"
+    state: directory
     recurse: yes
     owner: www-data
     group: www-data
@@ -20,5 +21,6 @@
 - name: Change permissions on tmp directory
   file:
     path: "{{ simpleinvoice_home }}/simpleinvoice/tmp"
+    state: directory
     recurse: yes
     mode: 777 
