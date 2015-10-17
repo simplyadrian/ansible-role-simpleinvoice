@@ -13,6 +13,32 @@
         fact: "simple_aws_dbpass"
         context: "env={{ environ }}"
 
+    apache_listen_port: 8080
+    apache_remove_default_vhost: true
+    apache_vhosts:
+      - servername: "www.local.dev.com"
+        serveralias: "local.dev"
+        serveradmin: "webadmin@webhost.com"
+        documentroot: "/var/www/html"
+
+    php_memory_limit: "128M"
+    php_max_execution_time: "90"
+    php_upload_max_filesize: "256M"
+    php_packages:
+      - php5
+      - php5-cli
+      - php5-common
+      - php5-dev
+      - php5-gd
+      - php5-apcu
+      - php5-xsl
+
+  pre_tasks:
+    - name: install module prerequisites
+      apt: name={{ item }} state=latest
+      with_items:
+        - unzip
+
   roles:
     - role: credstash
       secrets: "{{ credstash_secrets }}"

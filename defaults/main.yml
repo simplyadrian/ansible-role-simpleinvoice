@@ -4,4 +4,3 @@ simpleinvoice_url: bitbucket.org/simpleinvoices/simpleinvoices/downloads/
 simpleinvoice_artifact: simpleinvoices.2011.1.zip 
 simpleinvoice_aws_dbname: simple_invoices 
 simpleinvoice_home: /var/www/html
-simpleinvoice_app_user: simple_user
