@@ -3,6 +3,6 @@
 
 - name: Unarchive {{ simpleinvoice_artifact }}
   unarchive:
-    src: /tmp/{{ simpleinvoice_artifact }}
-    dest: {{ simpleinvoice_home }}
+    src: "/tmp/{{ simpleinvoice_artifact }}"
+    dest: "{{ simpleinvoice_home }}"
     copy: no
