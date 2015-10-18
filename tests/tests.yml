@@ -34,7 +34,6 @@
       - php5-xsl
       - php5-mysql
 
-    mysql_root_password: "{{ simple_aws_dbpass }}"
     mysql_databases:
       - name: "{{ simpleinvoice_dbname }}"
         encoding: utf8
