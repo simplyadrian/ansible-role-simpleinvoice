@@ -10,6 +10,3 @@
 - src: git+ssh://git@github.com/geerlingguy/ansible-role-mysql.git
   name: mysql
   path: ./roles
-- src: git+ssh://git@github.com/simplyadrian/ansible-role-simpleinvoice.git
-  name: simpleinvoice
-  path: ./roles

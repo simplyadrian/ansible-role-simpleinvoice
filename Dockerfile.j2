@@ -1,22 +1,44 @@
-FROM ansible/ubuntu14.04-ansible:devel
-MAINTAINER aherrera@spscommerce.com
+FROM ubuntu:14.04.3
+MAINTAINER simplyadrian@gmail.com 
+
+USER root
+RUN apt-get update &&\
+    apt-get dist-upgrade -y &&\
+    apt-get install -y \
+    sudo \
+    vim \
+    curl \
+    gcc \
+    libyaml-dev \
+    libpython2.7-dev \
+    python-crypto \
+    python-pip \
+    apt-transport-https \
+    jq \
+    software-properties-common &&\
+    apt-get clean &&\
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip install \
+    awscli \
+    ansible==1.9.4 \
+    boto
+
 ADD ./tests /tmp/playbook
 ## IGNORE THE HAND WAVING HUMAN
-ADD . /tmp/playbook/roles/ansible-role-passwordmanagerpro
+ADD . /tmp/playbook/roles/simpleinvoice
 WORKDIR /tmp/playbook
 ENV ANSIBLE_FORCE_COLOR=true
 ENV PYTHONUNBUFFERED=1
-
 ENV AWS_ACCESS_KEY_ID={{aws_key_id}}
 ENV AWS_SECRET_ACCESS_KEY={{aws_key}}
 
-RUN apt-get install -y vim
-
 ## run tests
-RUN ansible-playbook -vvvv -i "[test] localhost," -c local -e "environ=dev" tests.yml #&&\
-    #ansible-playbook -i "[test] localhost," -c local -e "environ=dev" tests.yml 2>/dev/null | grep -q 'changed=0.*failed=0' &&\
-    #(echo 'Idempotence test: \033[0;32mpass\033[0m' && exit 0) ||\
-    #(echo 'Idempotence test: \033[0;31mfail\033[0m' && exit 1)
+RUN ansible-playbook -vvvv -i "[test] localhost," -c local tests.yml -e "environ=prod" &&\
+    IDEMPOTENCE_RESULT=$( ansible-playbook -i "[test] localhost," -c local tests.yml -e "environ=prod" 2>/dev/null ) &&\
+    echo $IDEMPOTENCE_RESULT | grep -q 'changed=0.*failed=0' &&\
+    (echo 'Idempotence test: \033[0;32mpass\033[0m' && exit 0) ||\
+    (echo 'Idempotence test: \033[0;31mfail\033[0m' && echo "$IDEMPOTENCE_RESULT" && exit 1)
 
 EXPOSE 8080
 
