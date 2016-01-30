@@ -8,43 +8,43 @@ database.utf8                 = true
 database.params.host          = {{ simpleinvoice_dbhost | default('localhost') }}
 database.params.username      = {{ simple_aws_dbuser | default('root') }}
 database.params.password      = {{ simple_aws_dbpass | default('none') }}
-database.params.dbname        = {{ simpleinvoice_dbname }}
-database.params.port            = {{ simpleinvoice_dbport | default('3306') }}
+database.params.dbname        = {{ simpleinvoice_dbname | default('simple_invoices') }}
+database.params.port          = {{ simpleinvoice_dbport | default('3306') }}
 
 authentication.enabled        = false
-authentication.http         =
+authentication.http           =
 
 export.spreadsheet            = xls
-export.wordprocessor        = doc
+export.wordprocessor          = doc
 export.pdf.screensize         = 800
 export.pdf.papersize          = A4
-export.pdf.leftmargin       = 15
+export.pdf.leftmargin         = 15
 export.pdf.rightmargin        = 15
-export.pdf.topmargin        = 15
+export.pdf.topmargin          = 15
 export.pdf.bottommargin       = 15
 
-local.locale              = en_GB
-local.precision             = 2
+local.locale                  = en_US
+local.precision               = 2
 
-email.host                    = localhost
-email.smtp_auth             = false
-email.username              =
-email.password              =
-email.smtpport              = 25
+email.host                    = {{ simple_email_host | default('') }}
+email.smtp_auth               = true
+email.username                = {{ simple_email_user | default('') }}
+email.password                = {{ simple_email_pass | default('') }}
+email.smtpport                = {{ simple_email_port | default('25') }}
 email.secure                  =
 email.ack                     = false
 
 encryption.default.key        = this_is_the_encryption_key_change_it
-nonce.key                           = this_should_be_random_and_secret_so_change_it
-nonce.timelimit                     = 3600
+nonce.key                     = this_should_be_random_and_secret_so_change_it
+nonce.timelimit               = 3600
 
-version.name              = 2011.1 - stable
+version.name                  = 2011.1 - stable
 
-debug.level               = All
-debug.error_reporting       = E_ERROR
-phpSettings.date.timezone       = Europe/London
+debug.level                   = All
+debug.error_reporting         = E_ERROR
+phpSettings.date.timezone     = America/Chicago
 phpSettings.display_startup_errors  = 1
-phpSettings.display_errors      = 1
+phpSettings.display_errors    = 1
 phpSettings.log_errors        = 0
 phpSettings.error_log         = tmp/log/php.log
 
@@ -60,6 +60,6 @@ database.params.password      = devsecret
 
 [dev : production]
 database.params.dbname        = simple_invoices_dev
-debug.error_reporting       = E_ALL
+debug.error_reporting         = E_ALL
 phpSettings.display_startup_errors  = 1
-phpSettings.display_errors      = 1
+phpSettings.display_errors    = 1

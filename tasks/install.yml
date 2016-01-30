@@ -12,7 +12,7 @@
 
 - name: Change ownership to apache webserver user
   file:
-    path: "{{ simpleinvoice_home }}/simpleinvoices"
+    path: "{{ simpleinvoice_home }}"
     state: directory
     recurse: yes
     owner: www-data
@@ -23,4 +23,12 @@
     path: "{{ simpleinvoice_home }}/simpleinvoices/tmp"
     state: directory
     recurse: yes
-    mode: 777 
+    mode: 0775
+
+- name: Create config.ini
+  template:
+    src: config.ini.j2
+    dest: "{{ simpleinvoice_home }}/simpleinvoices/config/config.ini"
+    force: yes
+    owner: www-data
+    group: www-data

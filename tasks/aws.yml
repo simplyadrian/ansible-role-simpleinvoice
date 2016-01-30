@@ -1,15 +1,7 @@
-- name: Create config.ini
-  template:
-    src: config.ini.j2
-    dest: "{{ simpleinvoice_home }}/simpleinvoices/config/config.ini"
-    force: yes
-    owner: www-data
-    group: www-data
-
 - name: Create simple_invoices database on RDS
   mysql_db:
     name: "{{ simpleinvoice_dbname }}"
-    login_host: "{{ simpleinvoice_aws_dbhost }}"
+    login_host: "{{ simpleinvoice_dbhost }}"
     login_user: "{{ simple_aws_dbuser }}"
     login_password: "{{ simple_aws_dbpass }}"
     state: present

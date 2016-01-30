@@ -3,6 +3,9 @@
 simpleinvoice_url: bitbucket.org/simpleinvoices/simpleinvoices/downloads/
 simpleinvoice_artifact: simpleinvoices.2011.1.zip 
 simpleinvoice_dbname: simple_invoices
+simple_email_host: localhost
+simple_email_user:
+simple_email_pass:
+simple_email_port: 25
 simpleinvoice_home: /var/www/html
-simpleinvoice_dbhost: localhost
 simpleinvoice_local_install: true

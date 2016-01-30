@@ -5,3 +5,4 @@
 - include: install.yml
 
 - include: aws.yml
+  when: not simpleinvoice_local_install
