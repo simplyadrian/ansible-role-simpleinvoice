@@ -19,7 +19,7 @@
       - servername: "www.local.dev.com"
         serveralias: "local.dev"
         serveradmin: "webadmin@webhost.com"
-        documentroot: "/var/www/html"
+        documentroot: "/var/www/html/simpleinvoices"
 
     php_memory_limit: "128M"
     php_max_execution_time: "90"
