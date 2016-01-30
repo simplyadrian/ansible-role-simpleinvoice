@@ -1,4 +1,4 @@
-- src: git+ssh://git@github.com/SPSCommerce/ansible-role-module-credstash.git
+- src: git+ssh://git@github.com/simplyadrian/ansible-role-module-credstash.git
   name: credstash
   path: ./roles
 - src: git+ssh://git@github.com/geerlingguy/ansible-role-php.git
